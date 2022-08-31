@@ -1,0 +1,44 @@
+<p-panel header="Odpowiedzi">
+  <div class="p-fluid grid">
+    <div class="field col-12 md:col-12">
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText [(ngModel)]="filter" placeholder="Filtruj po imieniu, nazwisku i PESEL">
+      </span>
+    </div>
+  </div>
+  <p-table [value]="getAnswers()">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>PESEL</th>
+        <th>Telefon</th>
+        <th>Adres</th>
+        <th>Miasto</th>
+        <th>Kod Pocztowy</th>
+        <th>Data Ostatniego spożycia</th>
+        <th>Spożycie w tygodniu</th>
+        <th>Zadowolonie ze smaku</th>
+        <th>Ocena obecnych cen</th>
+        <th>Propozycja zmian</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-answer>
+      <tr>
+        <td>{{answer.person.name}}</td>
+        <td>{{answer.person.lastname}}</td>
+        <td>{{answer.person.pesel}}</td>
+        <td>{{answer.person.mobile}}</td>
+        <td>{{answer.person.address}}</td>
+        <td>{{answer.person.city}}</td>
+        <td>{{answer.person.zipCode}}</td>
+        <td>{{answer.questions.lastConsumptionDate?.toLocaleDateString()}}</td>
+        <td>{{answer.questions.howOftenPerWeek}}</td>
+        <td>{{answer.questions.satisfied ? 'TAK' : 'NIE'}}</td>
+        <td>{{answer.questions.priceRange}}</td>
+        <td>{{answer.questions.toChange}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-panel>

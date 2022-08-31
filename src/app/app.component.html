@@ -1,1 +1,16 @@
-<div>sescom test app</div>
+<!--TODO handle network status-->
+<!--Network status: {{networkStatus}}-->
+
+<ng-container *ngIf="!questionnaireVisible">
+  <p-button label="Dodaj ankiete" (onClick)="addQuestionnaire()"></p-button>
+</ng-container>
+
+<ng-container *ngIf="questionnaireVisible">
+  <app-questionnaire (addEvent)="onAdd($event)"
+                     (closeEvent)="onClose()">
+  </app-questionnaire>
+</ng-container>
+
+<app-answers></app-answers>
+
+

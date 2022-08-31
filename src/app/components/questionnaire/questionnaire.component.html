@@ -1,0 +1,80 @@
+<p-panel header="Ankieta">
+  <p-card subheader="Dane Osobowe">
+    <div class="p-fluid grid">
+      <div class="field col-12 md:col-6">
+        <span class="p-float-label">
+            <input type="text" id="name" pInputText [(ngModel)]="questionnaire.person.name">
+            <label for="name">Imię</label>
+        </span>
+      </div>
+      <div class="field col-12 md:col-6">
+        <span class="p-float-label">
+            <input type="text" id="lastname" pInputText [(ngModel)]="questionnaire.person.lastname">
+            <label for="lastname">Nazwisko</label>
+        </span>
+      </div>
+      <div class="field col-12 md:col-6">
+    <span class="p-float-label">
+      <p-inputMask inputId="pesel" mask="99999999999" [(ngModel)]="questionnaire.person.pesel"></p-inputMask>
+      <label for="pesel">PESEL</label>
+    </span>
+      </div>
+      <div class="field col-12 md:col-6">
+    <span class="p-float-label">
+      <p-inputMask inputId="mobile" mask="999-999-999" [(ngModel)]="questionnaire.person.mobile"></p-inputMask>
+      <label for="mobile">Telefon</label>
+    </span>
+      </div>
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+            <input type="text" id="address" pInputText [(ngModel)]="questionnaire.person.address">
+            <label for="address">Adres</label>
+        </span>
+      </div>
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+            <input type="text" id="city" pInputText [(ngModel)]="questionnaire.person.city">
+            <label for="city">Miasto</label>
+        </span>
+      </div>
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <p-inputMask inputId="zipCode" mask="99-999" [(ngModel)]="questionnaire.person.zipCode"></p-inputMask>
+          <label for="zipCode">Kod Pocztowy</label>
+        </span>
+      </div>
+    </div>
+  </p-card>
+  <br />
+  <p-card subheader="Pytania">
+
+    <h4>1. Data ostatniego spożycia produktów</h4>
+    <p-calendar [(ngModel)]="questionnaire.questions.lastConsumptionDate"></p-calendar>
+
+    <h4>2. Jak często spożywa w tygodniu?</h4>
+    <p-inputNumber [(ngModel)]="questionnaire.questions.howOftenPerWeek" [showButtons]="true"
+                   buttonLayout="horizontal" spinnerMode="horizontal" mode="decimal" [min]="0" placeholder="1"
+                   incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+
+    </p-inputNumber>
+
+    <h4>3. Czy jest zadowolony ze smaku produktów?</h4>
+    <p-selectButton [options]="getSatisfiedOptions()" [(ngModel)]="questionnaire.questions.satisfied"
+                    optionLabel="label" optionValue="value"></p-selectButton>
+
+    <h4>4. Co sądzi o obecnych cenach produktów (DROGO / AKCEPTOWALNE / PRZECIĘTNY POZIOM / BARDZO TANIO)</h4>
+    <p-rating [ngModel]="questionnaire.questions.priceRange" [cancel]="false"></p-rating>
+
+    <h4>5. Co by zmienił w ofercie firmy ACME</h4>
+
+
+    <ng-template pTemplate="footer">
+      <p-button label="Dodaj" icon="pi pi-check" (click)="onAdd()"></p-button>
+      <p-button label="Zamknij" icon="pi pi-times" (click)="onClose()" styleClass="p-button-secondary float-right" [style]="{'margin-left': '.5em'}"></p-button>
+    </ng-template>
+  </p-card>
+</p-panel>
+
+
+
+
