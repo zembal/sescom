@@ -45,8 +45,8 @@
       </div>
     </div>
   </p-card>
-  <br />
-  <p-card subheader="Pytania">
+
+  <p-card subheader="Pytania dotyczące produktów">
 
     <h4>1. Data ostatniego spożycia produktów</h4>
     <p-calendar [(ngModel)]="questionnaire.questions.lastConsumptionDate"></p-calendar>
@@ -63,10 +63,10 @@
                     optionLabel="label" optionValue="value"></p-selectButton>
 
     <h4>4. Co sądzi o obecnych cenach produktów (DROGO / AKCEPTOWALNE / PRZECIĘTNY POZIOM / BARDZO TANIO)</h4>
-    <p-rating [ngModel]="questionnaire.questions.priceRange" [cancel]="false"></p-rating>
+    <p-rating [(ngModel)]="questionnaire.questions.priceRange" [stars]="4" [cancel]="false"></p-rating>
 
     <h4>5. Co by zmienił w ofercie firmy ACME</h4>
-
+    <textarea [rows]="2" [cols]="100" pInputTextarea [(ngModel)]="questionnaire.questions.toChange" [autoResize]="true"></textarea>
 
     <ng-template pTemplate="footer">
       <p-button label="Dodaj" icon="pi pi-check" (click)="onAdd()"></p-button>
@@ -74,7 +74,3 @@
     </ng-template>
   </p-card>
 </p-panel>
-
-
-
-

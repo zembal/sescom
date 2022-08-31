@@ -14,9 +14,10 @@ import {TableModule} from 'primeng/table';
 import {CalendarModule} from 'primeng/calendar';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {SelectButtonModule} from 'primeng/selectbutton';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 import {QuestionnaireComponent} from './components/questionnaire/questionnaire.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { AnswersComponent } from './components/answers/answers.component';
+import {AnswersComponent} from './components/answers/answers.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { AnswersComponent } from './components/answers/answers.component';
     TableModule,
     CalendarModule,
     InputNumberModule,
-    SelectButtonModule
+    SelectButtonModule,
+    InputTextareaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

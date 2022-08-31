@@ -33,12 +33,15 @@
         <td>{{answer.person.address}}</td>
         <td>{{answer.person.city}}</td>
         <td>{{answer.person.zipCode}}</td>
-        <td>{{answer.questions.lastConsumptionDate?.toLocaleDateString()}}</td>
+        <td>{{formatDate(answer.questions.lastConsumptionDate)}}</td>
         <td>{{answer.questions.howOftenPerWeek}}</td>
         <td>{{answer.questions.satisfied ? 'TAK' : 'NIE'}}</td>
-        <td>{{answer.questions.priceRange}}</td>
+        <td>{{translatePriceRange(answer.questions.priceRange)}}</td>
         <td>{{answer.questions.toChange}}</td>
       </tr>
     </ng-template>
   </p-table>
+</p-panel>
+<p-panel header="JSON">
+  {{getAnswers() | json}}
 </p-panel>

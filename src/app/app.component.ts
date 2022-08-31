@@ -1,24 +1,31 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, OnDestroy} from '@angular/core';
 import {PrimeNGConfig} from "primeng/api";
 import {NetworkStatusService} from "./services/network-status.service";
 import {Questionnaire} from "./models/questionnaire.interface";
 import {StoreService} from "./services/store.service";
+import {takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
 
+  private unsubscribe = new EventEmitter<boolean>();
   public questionnaireVisible: boolean;
-  public networkStatus: boolean;
+  public isOnline: boolean;
 
   constructor(
     private primengConfig: PrimeNGConfig,
     private networkStatusService: NetworkStatusService,
     private storeService: StoreService
   ) {
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next(true);
+    this.unsubscribe.complete();
   }
 
   public addQuestionnaire(): void {
@@ -36,10 +43,8 @@ export class AppComponent {
   ngOnInit() {
     this.primengConfig.ripple = true;
     this.networkStatusService.isOnline()
-      .subscribe(isOnline => {
-        console.log('isOnline: ', isOnline);
-        this.networkStatus = isOnline;
-      })
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(isOnline => this.isOnline = isOnline)
   }
 
 }
