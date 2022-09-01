@@ -13,7 +13,7 @@ export class AnswersComponent implements OnInit, OnDestroy {
 
   private unsubscribe = new EventEmitter<boolean>();
   private answers = new Array<Questionnaire>();
-  public filter: string;
+  public filterPhrase: string;
 
   constructor(private storeService: StoreService) {
   }
@@ -30,11 +30,15 @@ export class AnswersComponent implements OnInit, OnDestroy {
   }
 
   public getAnswers(): Questionnaire[] {
-    if (!!this.filter) {
-      return this.answers.filter(answer =>
-        answer.person?.name?.includes(this.filter) ||
-        answer.person?.lastname?.includes(this.filter) ||
-        answer.person?.pesel?.includes(this.filter))
+    if (!!this.filterPhrase) {
+      return this.answers.filter(answer => {
+        const filterPhrase = this.filterPhrase.toLowerCase();
+        const name = answer.person?.name?.toLowerCase();
+        const lastname = answer.person?.lastname?.toLowerCase();
+        const pesel = answer.person?.pesel?.toLowerCase();
+
+        return name.includes(filterPhrase) || lastname.includes(filterPhrase) || pesel.includes(filterPhrase);
+      });
     }
     return this.answers;
   }

@@ -1,31 +1,37 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {AppComponent} from './app.component';
+import {AccordionModule} from "primeng/accordion";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let html: HTMLElement;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent],
+      imports: [
+        BrowserAnimationsModule,
+        AccordionModule
+      ]
     }).compileComponents();
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    html = fixture.nativeElement as HTMLElement;
+    fixture.detectChanges();
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'sescom'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('sescom');
-  });
+  it('should render 2 accordion panels', () => {
+    const accordions = html.querySelectorAll('p-accordiontab');
+    expect(accordions.length).toBe(2);
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('sescom app is running!');
-  });
+    const titles = html.querySelectorAll('span.p-accordion-header-text');
+    expect(titles.item(0).textContent).toBe(' Dodaj ankiete ');
+    expect(titles.item(1).textContent).toBe(' Wyświetl odpowiedzi ');
+  })
 });

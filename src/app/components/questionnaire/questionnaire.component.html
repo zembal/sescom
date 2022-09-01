@@ -55,7 +55,6 @@
     <p-inputNumber [(ngModel)]="questionnaire.questions.howOftenPerWeek" [showButtons]="true"
                    buttonLayout="horizontal" spinnerMode="horizontal" mode="decimal" [min]="0" placeholder="1"
                    incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
-
     </p-inputNumber>
 
     <h4>3. Czy jest zadowolony ze smaku produktów?</h4>
@@ -70,7 +69,6 @@
 
     <ng-template pTemplate="footer">
       <p-button label="Dodaj" icon="pi pi-check" (click)="onAdd()"></p-button>
-      <p-button label="Zamknij" icon="pi pi-times" (click)="onClose()" styleClass="p-button-secondary float-right" [style]="{'margin-left': '.5em'}"></p-button>
     </ng-template>
   </p-card>
 </p-panel>

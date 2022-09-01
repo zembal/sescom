@@ -1,11 +1,11 @@
 import {EventEmitter, Injectable, OnDestroy} from '@angular/core';
-import {fromEvent, merge, Observable, Subject, takeUntil} from "rxjs";
+import {BehaviorSubject, fromEvent, merge, Observable, takeUntil} from "rxjs";
 
 @Injectable({providedIn: 'root'})
 export class NetworkStatusService implements OnDestroy {
 
   private unsubscribe = new EventEmitter<boolean>();
-  private networkStatus = new Subject<boolean>();
+  private networkStatus = new BehaviorSubject<boolean>(navigator.onLine);
 
   constructor() {
     this.watchNetworkStatus();

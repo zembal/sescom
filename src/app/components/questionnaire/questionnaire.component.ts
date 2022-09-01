@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {Questionnaire} from "../../models/questionnaire.interface";
 
 @Component({
@@ -9,8 +9,6 @@ import {Questionnaire} from "../../models/questionnaire.interface";
 export class QuestionnaireComponent {
 
   @Output() public addEvent = new EventEmitter<Questionnaire>();
-  @Output() public closeEvent = new EventEmitter<any>();
-
   public questionnaire = <Questionnaire>{person: {}, questions: {}};
 
   constructor() {
@@ -19,10 +17,6 @@ export class QuestionnaireComponent {
   public onAdd(): void {
     this.addEvent.emit({...this.questionnaire});
     this.clearQuestionnaire();
-  }
-
-  public onClose(): void {
-    this.closeEvent.emit();
   }
 
   public getSatisfiedOptions(): any[] {

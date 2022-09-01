@@ -1,10 +1,9 @@
-<ng-container *ngIf="!questionnaireVisible">
-  <p-button label="Dodaj ankiete" (onClick)="addQuestionnaire()"></p-button>
-</ng-container>
-<ng-container *ngIf="questionnaireVisible">
-  <app-questionnaire (addEvent)="onAdd($event)"
-                     (closeEvent)="onClose()">
-  </app-questionnaire>
-</ng-container>
-<app-answers></app-answers>
-
+<p-toast></p-toast>
+<p-accordion>
+  <p-accordionTab header="Dodaj ankiete">
+    <app-questionnaire (addEvent)="onAdd($event)"></app-questionnaire>
+  </p-accordionTab>
+  <p-accordionTab header="Wyświetl odpowiedzi">
+    <app-answers></app-answers>
+  </p-accordionTab>
+</p-accordion>

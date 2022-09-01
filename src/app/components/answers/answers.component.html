@@ -3,7 +3,7 @@
     <div class="field col-12 md:col-12">
       <span class="p-input-icon-left">
         <i class="pi pi-search"></i>
-        <input type="text" pInputText [(ngModel)]="filter" placeholder="Filtruj po imieniu, nazwisku i PESEL">
+        <input type="text" pInputText [(ngModel)]="filterPhrase" placeholder="Filtruj po imieniu, nazwisku i PESEL">
       </span>
     </div>
   </div>
@@ -42,6 +42,7 @@
     </ng-template>
   </p-table>
 </p-panel>
-<p-panel header="JSON">
-  {{getAnswers() | json}}
-</p-panel>
+
+<!--<p-panel header="JSON">-->
+<!--  {{getAnswers() | json}}-->
+<!--</p-panel>-->
